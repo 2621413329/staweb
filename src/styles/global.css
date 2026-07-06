@@ -13,7 +13,15 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+#root {
   overflow: hidden;
+}
+
+.page-scroll {
+  overflow-y: auto;
+  height: 100%;
 }
 
 /* 以常见笔记本视口为基准（1366×768 ~ 1920×1080） */

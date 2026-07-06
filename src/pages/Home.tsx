@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import SiteNav from '../components/SiteNav'
 import TopBar from '../components/TopBar'
 import IslandMap from '../components/IslandMap'
 import SidePanel from '../components/SidePanel'
@@ -74,6 +75,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col w-full h-full overflow-hidden bg-gradient-to-br from-sky-900 via-blue-900 to-indigo-950">
+      <SiteNav />
       <TopBar
         unlockedCount={unlockedCount}
         totalCount={islandList.length}
