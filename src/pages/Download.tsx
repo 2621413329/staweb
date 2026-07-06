@@ -53,31 +53,6 @@ export default function Download() {
             </motion.div>
           ))}
         </div>
-
-        <div className="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-blue-200/60 space-y-2">
-          <p className="font-semibold text-blue-100/80">📁 如何添加新安装包</p>
-          <p>
-            1. 将 APK 文件放到服务器{' '}
-            <code className="px-1.5 py-0.5 rounded bg-black/30 text-blue-200">
-              public/downloads/
-            </code>{' '}
-            目录
-          </p>
-          <p>
-            2. 编辑{' '}
-            <code className="px-1.5 py-0.5 rounded bg-black/30 text-blue-200">
-              src/data/downloads.ts
-            </code>{' '}
-            添加版本信息
-          </p>
-          <p>3. 重新 build 并部署即可</p>
-          <p className="pt-1">
-            直接访问安装包链接：
-            <code className="ml-1 px-1.5 py-0.5 rounded bg-black/30 text-blue-200">
-              /downloads/文件名.apk
-            </code>
-          </p>
-        </div>
       </div>
     </PageShell>
   )
