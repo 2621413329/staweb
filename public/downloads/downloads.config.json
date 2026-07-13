@@ -1,0 +1,11 @@
+{
+  "packages": [
+    {
+      "filename": "staweb-1.2.0.apk",
+      "name": "成长小岛 Android 版",
+      "version": "1.2.0",
+      "platform": "android",
+      "description": "公开测试版，适用于 Android 手机与平板。"
+    }
+  ]
+}

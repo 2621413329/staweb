@@ -1,3 +1,2 @@
-# 将 APK 安装包放在此目录
-# 例如：staweb.apk
-# 访问路径：https://你的域名/downloads/staweb.apk
+# 将 APK 放到此目录，文件名与 downloads.config.json 中一致
+# 修改 downloads.config.json 后执行：npm run downloads:manifest

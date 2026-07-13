@@ -1,29 +1,24 @@
+export type DownloadPlatform = 'android' | 'ios' | 'other'
+
 export interface DownloadPackage {
   id: string
+  filename: string
   name: string
-  platform: 'android' | 'ios' | 'other'
+  platform: DownloadPlatform
   version: string
-  size?: string
+  size: string
+  sizeBytes: number
   description: string
-  /** 相对于 public 目录的路径，如 /downloads/staweb.apk */
   url: string
   updatedAt: string
 }
 
-export const downloadPackages: DownloadPackage[] = [
-  {
-    id: 'android-release',
-    name: '成长小岛 Android 版',
-    platform: 'android',
-    version: '1.0.0',
-    size: '待上传',
-    description: '公开测试版，适用于 Android 手机与平板。',
-    url: '/downloads/staweb.apk',
-    updatedAt: '2026-07-06',
-  },
-]
+export interface DownloadManifest {
+  generatedAt: string
+  packages: DownloadPackage[]
+}
 
-export function getPlatformLabel(platform: DownloadPackage['platform']): string {
+export function getPlatformLabel(platform: DownloadPlatform): string {
   switch (platform) {
     case 'android':
       return 'Android'
@@ -34,7 +29,7 @@ export function getPlatformLabel(platform: DownloadPackage['platform']): string 
   }
 }
 
-export function getPlatformIcon(platform: DownloadPackage['platform']): string {
+export function getPlatformIcon(platform: DownloadPlatform): string {
   switch (platform) {
     case 'android':
       return '🤖'
@@ -43,4 +38,12 @@ export function getPlatformIcon(platform: DownloadPackage['platform']): string {
     default:
       return '📦'
   }
+}
+
+export async function fetchDownloadManifest(): Promise<DownloadManifest> {
+  const response = await fetch(`/downloads/manifest.json?t=${Date.now()}`)
+  if (!response.ok) {
+    throw new Error('无法读取安装包列表')
+  }
+  return response.json() as Promise<DownloadManifest>
 }

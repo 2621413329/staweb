@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "node scripts/generate-downloads-manifest.mjs && vite",
+    "downloads:manifest": "node scripts/generate-downloads-manifest.mjs",
+    "build": "node scripts/generate-downloads-manifest.mjs && tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
