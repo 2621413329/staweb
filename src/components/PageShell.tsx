@@ -34,6 +34,10 @@ export default function PageShell({ title, subtitle, children }: PageShellProps)
               隐私政策
             </Link>
             <span className="mx-2">·</span>
+            <Link to="/terms" className="hover:text-blue-200/70 transition-colors">
+              用户协议
+            </Link>
+            <span className="mx-2">·</span>
             <span>联系：2621413329@qq.com</span>
           </footer>
         </div>

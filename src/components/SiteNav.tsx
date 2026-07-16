@@ -5,6 +5,7 @@ const navItems = [
   { path: '/', label: '首页' },
   { path: '/download', label: '下载' },
   { path: '/privacy', label: '隐私政策' },
+  { path: '/terms', label: '用户协议' },
 ]
 
 export default function SiteNav() {
