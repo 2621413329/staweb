@@ -7,12 +7,12 @@ export default function Privacy() {
   return (
     <PageShell
       title={privacyMeta.title}
-      subtitle={`更新日期：${privacyMeta.updatedAt} · 生效日期：${privacyMeta.effectiveAt}`}
+      subtitle={`${privacyMeta.subtitle} · 更新日期：${privacyMeta.updatedAt}`}
     >
       <p className="mb-6 text-sm text-blue-200/70">
         关联文档：
         <Link to="/terms" className="ml-1 text-blue-300 hover:text-blue-200 underline">
-          用户协议 / 使用条款
+          用户协议
         </Link>
       </p>
 

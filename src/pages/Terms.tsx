@@ -7,7 +7,7 @@ export default function Terms() {
   return (
     <PageShell
       title={termsMeta.title}
-      subtitle={`${termsMeta.subtitle} · 更新日期：${termsMeta.updatedAt} · 生效日期：${termsMeta.effectiveAt}`}
+      subtitle={`${termsMeta.subtitle} · 更新日期：${termsMeta.updatedAt}`}
     >
       <p className="mb-6 text-sm text-blue-200/70">
         关联文档：
