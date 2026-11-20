@@ -1,59 +1,80 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
 
-const navItems = [
-  { path: '/', label: '首页' },
-  { path: '/download', label: '下载' },
-  { path: '/privacy', label: '隐私政策' },
-  { path: '/terms', label: '用户协议' },
+const links = [
+  { href: '/#place', label: '安放故事' },
+  { href: '/#app', label: '看看星屿' },
+  { href: '/download', label: '下载' },
 ]
 
 export default function SiteNav() {
   const { pathname } = useLocation()
+  const [open, setOpen] = useState(false)
 
   return (
-    <motion.nav
-      className="relative z-50 flex shrink-0 items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 border-b border-white/10 bg-slate-900/40 backdrop-blur-md"
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-    >
-      <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
-        <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/10 border border-white/20 group-hover:bg-white/15 transition-colors">
-          <span className="text-base sm:text-lg">🌍</span>
-        </div>
-        <div>
-          <p className="text-base sm:text-lg font-bold text-white tracking-wide leading-tight">
-            成长小岛
-          </p>
-          <p className="text-[10px] sm:text-xs text-blue-200/70 leading-tight">
-            Starland · 成长世界
-          </p>
-        </div>
-      </Link>
+    <header className="sticky top-0 z-50 border-b border-[#eadfd4]/80 bg-[#fff8f2]/80 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <Link to="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
+          <img src="/art/faces/xiao_guangbao_ping_jing.webp" alt="" className="h-9 w-9 object-contain" />
+          <span className="leading-tight">
+            <span className="block font-serif text-lg text-[#3d3229]">星屿</span>
+            <span className="block text-[10px] tracking-[0.18em] text-[#8c7b6b]">STAR ISLAND</span>
+          </span>
+        </Link>
 
-      <div className="flex items-center gap-1 sm:gap-2">
-        {navItems.map((item) => {
-          const active =
-            item.path === '/'
-              ? pathname === '/'
-              : pathname.startsWith(item.path)
+        <nav className="hidden items-center gap-1 sm:flex">
+          {links.map((link) => {
+            const active = link.href === '/download' && pathname.startsWith('/download')
+            return (
+              <Link
+                key={link.href}
+                to={link.href}
+                className={`rounded-full px-3.5 py-2 text-sm ${
+                  active ? 'bg-white text-[#3d3229] shadow-sm' : 'text-[#6b5b4e] hover:bg-white/70'
+                }`}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
+          <Link
+            to="/download"
+            className="ml-2 rounded-full bg-[#3d3229] px-4 py-2 text-sm font-semibold text-white"
+          >
+            下载星屿
+          </Link>
+        </nav>
 
-          return (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
-                active
-                  ? 'bg-white/15 text-white border border-white/20 shadow-sm'
-                  : 'text-blue-200/70 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              {item.label}
-            </Link>
-          )
-        })}
+        <button
+          type="button"
+          className="rounded-full px-3 py-2 text-sm text-[#3d3229] sm:hidden"
+          aria-expanded={open}
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? '关闭' : '菜单'}
+        </button>
       </div>
-    </motion.nav>
+      {open && (
+        <div className="space-y-1 border-t border-[#eadfd4] px-4 py-3 sm:hidden">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
+              onClick={() => setOpen(false)}
+              className="block rounded-xl px-3 py-2 text-sm text-[#3d3229]"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            to="/download"
+            onClick={() => setOpen(false)}
+            className="mt-1 block rounded-full bg-[#3d3229] px-4 py-2 text-center text-sm text-white"
+          >
+            下载星屿
+          </Link>
+        </div>
+      )}
+    </header>
   )
 }

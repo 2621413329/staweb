@@ -7,7 +7,7 @@ interface LegalArticleProps {
 
 export default function LegalArticle({ sections, disclaimer }: LegalArticleProps) {
   return (
-    <article className="prose-policy space-y-8 text-blue-100/80 text-sm leading-relaxed">
+    <article className="legal-copy prose-policy space-y-8 text-sm leading-relaxed">
       {sections.map((section) => (
         <section key={section.title}>
           <h2 className="text-base sm:text-lg font-bold text-white mb-4 pb-2 border-b border-white/10">

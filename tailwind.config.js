@@ -4,7 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Segoe UI"', 'system-ui', 'sans-serif'],
+        sans: ['"WenQuanYi Micro Hei"', '"PingFang SC"', '"Noto Sans SC"', '"Segoe UI"', 'system-ui', 'sans-serif'],
+        serif: ['"Iowan Old Style"', 'Palatino', '"Songti SC"', '"Noto Serif SC"', '"WenQuanYi Micro Hei"', 'serif'],
+        display: ['"WenQuanYi Micro Hei"', '"Segoe UI"', 'system-ui', 'sans-serif'],
       },
     },
   },
