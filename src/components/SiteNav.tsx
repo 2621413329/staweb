@@ -1,59 +1,67 @@
+import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
 
 const navItems = [
-  { path: '/', label: '首页' },
-  { path: '/download', label: '下载' },
-  { path: '/privacy', label: '隐私政策' },
-  { path: '/terms', label: '用户协议' },
+  { path: '/', label: '首页', hash: '' },
+  { path: '/#try', label: '体验', hash: '#try' },
+  { path: '/#features', label: '功能', hash: '#features' },
+  { path: '/download', label: '下载', hash: '' },
 ]
 
 export default function SiteNav() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
+  const onHome = pathname === '/'
+
+  useEffect(() => {
+    if (!hash) return
+    document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, [hash])
 
   return (
-    <motion.nav
-      className="relative z-50 flex shrink-0 items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 border-b border-white/10 bg-slate-900/40 backdrop-blur-md"
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-    >
-      <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
-        <div className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/10 border border-white/20 group-hover:bg-white/15 transition-colors">
-          <span className="text-base sm:text-lg">🌍</span>
+    <nav className="sticky top-0 z-50 border-b border-[#e4eef6]/80 bg-[#f4f8fc]/85 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+        <Link to="/" className="flex min-w-0 items-center gap-2.5">
+          <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#d7ecff] text-lg">🏝️</span>
+          <span className="min-w-0">
+            <span className="block truncate text-base font-black tracking-wide text-[#1d3348]">星屿</span>
+            <span className="block text-[10px] font-semibold text-[#7B8A9A]">成长小岛 · Star Island</span>
+          </span>
+        </Link>
+        <div className="flex items-center gap-1">
+          {navItems.map((item) => {
+            const active = item.path === '/download'
+              ? pathname.startsWith('/download')
+              : onHome && (item.hash ? hash === item.hash : hash === '' || hash === '#')
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`rounded-full px-2.5 py-1.5 text-xs font-bold sm:px-3 sm:text-sm ${
+                  active ? 'bg-white text-[#1d3348] shadow-sm' : 'text-[#5c7084] hover:text-[#1d3348]'
+                }`}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
+          <Link
+            to="/privacy"
+            className={`hidden rounded-full px-3 py-1.5 text-sm font-bold md:inline ${
+              pathname.startsWith('/privacy') ? 'bg-white text-[#1d3348] shadow-sm' : 'text-[#5c7084] hover:text-[#1d3348]'
+            }`}
+          >
+            隐私
+          </Link>
+          <Link
+            to="/terms"
+            className={`hidden rounded-full px-3 py-1.5 text-sm font-bold md:inline ${
+              pathname.startsWith('/terms') ? 'bg-white text-[#1d3348] shadow-sm' : 'text-[#5c7084] hover:text-[#1d3348]'
+            }`}
+          >
+            协议
+          </Link>
         </div>
-        <div>
-          <p className="text-base sm:text-lg font-bold text-white tracking-wide leading-tight">
-            成长小岛
-          </p>
-          <p className="text-[10px] sm:text-xs text-blue-200/70 leading-tight">
-            Starland · 成长世界
-          </p>
-        </div>
-      </Link>
-
-      <div className="flex items-center gap-1 sm:gap-2">
-        {navItems.map((item) => {
-          const active =
-            item.path === '/'
-              ? pathname === '/'
-              : pathname.startsWith(item.path)
-
-          return (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
-                active
-                  ? 'bg-white/15 text-white border border-white/20 shadow-sm'
-                  : 'text-blue-200/70 hover:text-white hover:bg-white/10'
-              }`}
-            >
-              {item.label}
-            </Link>
-          )
-        })}
       </div>
-    </motion.nav>
+    </nav>
   )
 }

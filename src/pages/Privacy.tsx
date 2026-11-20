@@ -9,9 +9,9 @@ export default function Privacy() {
       title={privacyMeta.title}
       subtitle={`${privacyMeta.subtitle} · 更新日期：${privacyMeta.updatedAt}`}
     >
-      <p className="mb-6 text-sm text-blue-200/70">
+      <p className="mb-6 text-sm text-[#5c7084]">
         关联文档：
-        <Link to="/terms" className="ml-1 text-blue-300 hover:text-blue-200 underline">
+        <Link to="/terms" className="ml-1 text-[#2f7dce] underline hover:text-[#1d5fa8]">
           用户协议
         </Link>
       </p>
