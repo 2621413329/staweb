@@ -24,10 +24,10 @@ export default function SiteNav() {
         </div>
         <div>
           <p className="text-base sm:text-lg font-bold text-white tracking-wide leading-tight">
-            成长小岛
+            星屿
           </p>
           <p className="text-[10px] sm:text-xs text-blue-200/70 leading-tight">
-            Starland · 成长世界
+            成长小岛
           </p>
         </div>
       </Link>
