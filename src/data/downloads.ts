@@ -29,17 +29,6 @@ export function getPlatformLabel(platform: DownloadPlatform): string {
   }
 }
 
-export function getPlatformIcon(platform: DownloadPlatform): string {
-  switch (platform) {
-    case 'android':
-      return '🤖'
-    case 'ios':
-      return '🍎'
-    default:
-      return '📦'
-  }
-}
-
 export async function fetchDownloadManifest(): Promise<DownloadManifest> {
   const response = await fetch(`/downloads/manifest.json?t=${Date.now()}`)
   if (!response.ok) {

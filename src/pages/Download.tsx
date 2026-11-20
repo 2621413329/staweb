@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import PageShell from '../components/PageShell'
-import {
-  fetchDownloadManifest,
-  getPlatformIcon,
-  getPlatformLabel,
-  type DownloadPackage,
-} from '../data/downloads'
+import { Link } from 'react-router-dom'
+import IslandScene from '../components/IslandScene'
+import Shell from '../components/Shell'
+import { fetchDownloadManifest, getPlatformLabel, type DownloadPackage } from '../data/downloads'
 
 export default function Download() {
   const [packages, setPackages] = useState<DownloadPackage[]>([])
@@ -15,7 +11,6 @@ export default function Download() {
 
   useEffect(() => {
     let cancelled = false
-
     fetchDownloadManifest()
       .then((manifest) => {
         if (!cancelled) {
@@ -24,86 +19,65 @@ export default function Download() {
         }
       })
       .catch((err: Error) => {
-        if (!cancelled) {
-          setError(err.message || '加载失败')
-        }
+        if (!cancelled) setError(err.message || '无法读取安装包列表')
       })
       .finally(() => {
         if (!cancelled) setLoading(false)
       })
-
     return () => {
       cancelled = true
     }
   }, [])
 
+  const hasIos = packages.some((pkg) => pkg.platform === 'ios')
+
   return (
-    <PageShell title="下载安装" subtitle="获取成长小岛最新安装包">
-      <div className="space-y-6">
-        <p className="text-sm text-blue-200/70 leading-relaxed">
-          请选择对应平台的安装包下载。Android 用户下载 APK 后，需在系统设置中允许「安装未知来源应用」。
-          iOS 版本暂未提供公开下载，敬请期待。
-        </p>
+    <Shell>
+      <section className="section">
+        <div className="wrap download-grid">
+          <div>
+            <header className="page-head">
+              <h1>回到你的岛。</h1>
+              <p>Android 安装包在这里。</p>
+            </header>
 
-        {loading && (
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10 text-sm text-blue-200/70 text-center">
-            正在读取安装包信息...
-          </div>
-        )}
+            {loading && <p className="pale-note">正在读取安装包信息。</p>}
+            {error && <p className="pale-note">{error}</p>}
+            {!loading && !error && packages.length === 0 && (
+              <p className="pale-note">暂无可下载的安装包。</p>
+            )}
 
-        {error && (
-          <div className="p-6 rounded-xl bg-red-500/10 border border-red-400/20 text-sm text-red-200/90 text-center">
-            {error}
-          </div>
-        )}
-
-        {!loading && !error && packages.length === 0 && (
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10 text-sm text-blue-200/70 text-center">
-            暂无可下载的安装包
-          </div>
-        )}
-
-        <div className="grid gap-4">
-          {packages.map((pkg, index) => (
-            <motion.div
-              key={pkg.id}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.08 }}
-              className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-colors"
-            >
-              <div className="flex items-center gap-4 flex-1 min-w-0">
-                <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500/30 to-emerald-500/20 border border-white/10 text-2xl shrink-0">
-                  {getPlatformIcon(pkg.platform)}
-                </div>
-                <div className="min-w-0">
-                  <h3 className="text-base font-bold text-white truncate">
-                    {pkg.name}
-                  </h3>
-                  <p className="text-xs text-blue-200/60 mt-0.5">
+            <div className="package-list">
+              {packages.map((pkg) => (
+                <article className="card package-card" key={pkg.id}>
+                  <h2>{pkg.name}</h2>
+                  <p className="pale-note">
                     {getPlatformLabel(pkg.platform)} · v{pkg.version} · {pkg.size}
                   </p>
-                  <p className="text-sm text-blue-100/70 mt-1">{pkg.description}</p>
-                  <p className="text-xs text-blue-200/40 mt-1 truncate" title={pkg.filename}>
-                    安装包：{pkg.filename}
-                  </p>
-                  <p className="text-xs text-blue-200/40 mt-0.5">
-                    更新：{pkg.updatedAt}
-                  </p>
-                </div>
-              </div>
+                  <p>{pkg.description}</p>
+                  <p className="fine">更新 {pkg.updatedAt}</p>
+                  <a className="btn btn-primary" href={pkg.url} download={pkg.filename}>
+                    下载安装包
+                  </a>
+                </article>
+              ))}
+            </div>
 
-              <a
-                href={pkg.url}
-                download={pkg.filename}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-indigo-500 to-blue-500 hover:from-indigo-400 hover:to-blue-400 transition-all shadow-lg shadow-indigo-500/20 shrink-0"
-              >
-                ⬇ 下载安装包
-              </a>
-            </motion.div>
-          ))}
+            <ol className="steps">
+              <li>1. 下载</li>
+              <li>2. 选一个伙伴（小星仔或小光宝）</li>
+              <li>3. 写下第一句</li>
+            </ol>
+            <p style={{ marginTop: 16 }}>今天，有没有一个你想留住的瞬间？不必是大事。一行也可以。</p>
+            <p className="fine">Android 下载后，在系统设置里允许安装未知来源应用。</p>
+            {!hasIos && <p className="fine">iOS 暂未提供公开下载。</p>}
+            <p className="fine">
+              协议与隐私见 <Link to="/terms">用户协议</Link> 与 <Link to="/privacy">隐私政策</Link>。
+            </p>
+          </div>
+          <IslandScene level={6} lamps={{ main: 1, work: 0.5, study: 0.5, health: 0.7, social: 0.5, life: 0.6, wealth: 0.45 }} />
         </div>
-      </div>
-    </PageShell>
+      </section>
+    </Shell>
   )
 }
