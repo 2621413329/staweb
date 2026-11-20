@@ -40,25 +40,25 @@ export default function Download() {
   return (
     <PageShell title="下载安装" subtitle="获取成长小岛最新安装包">
       <div className="space-y-6">
-        <p className="text-sm text-blue-200/70 leading-relaxed">
+        <p className="text-sm leading-relaxed text-ink/75">
           请选择对应平台的安装包下载。Android 用户下载 APK 后，需在系统设置中允许「安装未知来源应用」。
           iOS 版本暂未提供公开下载，敬请期待。
         </p>
 
         {loading && (
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10 text-sm text-blue-200/70 text-center">
+          <div className="rounded-xl border border-ink/10 bg-foam p-6 text-center text-sm text-mist">
             正在读取安装包信息...
           </div>
         )}
 
         {error && (
-          <div className="p-6 rounded-xl bg-red-500/10 border border-red-400/20 text-sm text-red-200/90 text-center">
+          <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center text-sm text-red-700">
             {error}
           </div>
         )}
 
         {!loading && !error && packages.length === 0 && (
-          <div className="p-6 rounded-xl bg-white/5 border border-white/10 text-sm text-blue-200/70 text-center">
+          <div className="rounded-xl border border-ink/10 bg-foam p-6 text-center text-sm text-mist">
             暂无可下载的安装包
           </div>
         )}
@@ -70,24 +70,24 @@ export default function Download() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.08 }}
-              className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-colors"
+              className="flex flex-col gap-4 rounded-2xl border border-ink/10 bg-foam p-5 transition-colors hover:border-sky/40 sm:flex-row sm:items-center"
             >
-              <div className="flex items-center gap-4 flex-1 min-w-0">
-                <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500/30 to-emerald-500/20 border border-white/10 text-2xl shrink-0">
+              <div className="flex min-w-0 flex-1 items-center gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-ink/10 bg-white text-2xl">
                   {getPlatformIcon(pkg.platform)}
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base font-bold text-white truncate">
+                  <h3 className="truncate text-base font-bold text-ink">
                     {pkg.name}
                   </h3>
-                  <p className="text-xs text-blue-200/60 mt-0.5">
+                  <p className="mt-0.5 text-xs text-mist">
                     {getPlatformLabel(pkg.platform)} · v{pkg.version} · {pkg.size}
                   </p>
-                  <p className="text-sm text-blue-100/70 mt-1">{pkg.description}</p>
-                  <p className="text-xs text-blue-200/40 mt-1 truncate" title={pkg.filename}>
+                  <p className="mt-1 text-sm text-ink/75">{pkg.description}</p>
+                  <p className="mt-1 truncate text-xs text-mist" title={pkg.filename}>
                     安装包：{pkg.filename}
                   </p>
-                  <p className="text-xs text-blue-200/40 mt-0.5">
+                  <p className="mt-0.5 text-xs text-mist">
                     更新：{pkg.updatedAt}
                   </p>
                 </div>
@@ -96,7 +96,7 @@ export default function Download() {
               <a
                 href={pkg.url}
                 download={pkg.filename}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-indigo-500 to-blue-500 hover:from-indigo-400 hover:to-blue-400 transition-all shadow-lg shadow-indigo-500/20 shrink-0"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-ink px-5 py-2.5 text-sm font-semibold text-white"
               >
                 ⬇ 下载安装包
               </a>
