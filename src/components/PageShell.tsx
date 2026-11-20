@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import SiteNav from '../components/SiteNav'
+import SiteNav from './SiteNav'
 
 interface PageShellProps {
   title: string
@@ -9,36 +9,28 @@ interface PageShellProps {
 
 export default function PageShell({ title, subtitle, children }: PageShellProps) {
   return (
-    <div className="page-scroll flex flex-col w-full min-h-full bg-gradient-to-br from-sky-900 via-blue-900 to-indigo-950">
+    <div className="flex min-h-screen flex-col bg-sand text-ink">
       <SiteNav />
 
-      <main className="flex-1 overflow-y-auto">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <main className="flex-1">
+        <div className="mx-auto max-w-3xl px-5 py-10 sm:px-8 sm:py-14">
           <header className="mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">{title}</h1>
-            {subtitle && (
-              <p className="text-sm text-blue-200/60">{subtitle}</p>
-            )}
+            <h1 className="text-3xl font-semibold tracking-tight text-ink">{title}</h1>
+            {subtitle && <p className="mt-2 text-sm text-clay">{subtitle}</p>}
           </header>
 
-          <div className="rounded-2xl bg-slate-900/50 backdrop-blur-md border border-white/10 p-6 sm:p-8 shadow-xl">
+          <div className="rounded-[1.6rem] border border-line bg-card p-6 shadow-sm sm:p-8">
             {children}
           </div>
 
-          <footer className="mt-8 text-center text-xs text-blue-200/40">
-            <Link to="/" className="hover:text-blue-200/70 transition-colors">
-              ← 返回首页
-            </Link>
+          <footer className="mt-8 text-center text-xs text-clay">
+            <Link to="/" className="hover:text-ink">← 返回首页</Link>
             <span className="mx-2">·</span>
-            <Link to="/privacy" className="hover:text-blue-200/70 transition-colors">
-              隐私政策
-            </Link>
+            <Link to="/privacy" className="hover:text-ink">隐私政策</Link>
             <span className="mx-2">·</span>
-            <Link to="/terms" className="hover:text-blue-200/70 transition-colors">
-              用户协议
-            </Link>
+            <Link to="/terms" className="hover:text-ink">用户协议</Link>
             <span className="mx-2">·</span>
-            <span>联系：2621413329@qq.com</span>
+            <a href="mailto:2621413329@qq.com" className="hover:text-ink">2621413329@qq.com</a>
           </footer>
         </div>
       </main>
