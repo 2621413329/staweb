@@ -1,47 +1,31 @@
+import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import SiteNav from '../components/SiteNav'
+import SiteFooter from './SiteFooter'
+import SiteNav from './SiteNav'
 
 interface PageShellProps {
   title: string
   subtitle?: string
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function PageShell({ title, subtitle, children }: PageShellProps) {
   return (
-    <div className="page-scroll flex flex-col w-full min-h-full bg-gradient-to-br from-sky-900 via-blue-900 to-indigo-950">
+    <div className="min-h-screen bg-sand text-ink">
       <SiteNav />
-
-      <main className="flex-1 overflow-y-auto">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-          <header className="mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2">{title}</h1>
-            {subtitle && (
-              <p className="text-sm text-blue-200/60">{subtitle}</p>
-            )}
-          </header>
-
-          <div className="rounded-2xl bg-slate-900/50 backdrop-blur-md border border-white/10 p-6 sm:p-8 shadow-xl">
-            {children}
-          </div>
-
-          <footer className="mt-8 text-center text-xs text-blue-200/40">
-            <Link to="/" className="hover:text-blue-200/70 transition-colors">
-              ← 返回首页
-            </Link>
-            <span className="mx-2">·</span>
-            <Link to="/privacy" className="hover:text-blue-200/70 transition-colors">
-              隐私政策
-            </Link>
-            <span className="mx-2">·</span>
-            <Link to="/terms" className="hover:text-blue-200/70 transition-colors">
-              用户协议
-            </Link>
-            <span className="mx-2">·</span>
-            <span>联系：2621413329@qq.com</span>
-          </footer>
-        </div>
+      <main className="mx-auto max-w-3xl px-5 pb-8 pt-28 sm:px-6">
+        <p className="text-sm text-mist">
+          <Link to="/" className="hover:text-ink">
+            星屿
+          </Link>
+          <span className="mx-2">/</span>
+          {title}
+        </p>
+        <h1 className="mt-3 font-display text-4xl text-ink">{title}</h1>
+        {subtitle && <p className="mt-2 text-sm text-mist">{subtitle}</p>}
+        <div className="mt-8 rounded-[28px] border border-ink/5 bg-white p-6 shadow-soft sm:p-8">{children}</div>
       </main>
+      <SiteFooter />
     </div>
   )
 }
