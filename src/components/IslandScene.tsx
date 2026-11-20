@@ -72,7 +72,7 @@ export default function IslandScene({
         {storyIslands.map((island, index) => {
           const label = `${island.name}岛，示例：${island.example}`
           const art = (
-            <StoryIslandArt color={island.color} decor={island.decor} lamp={lampOf(island.id, dim ? 0.45 : 0.85)} />
+            <StoryIslandArt id={island.id} lamp={lampOf(island.id, dim ? 0.45 : 0.85)} sky={sky} />
           )
           return (
             <div

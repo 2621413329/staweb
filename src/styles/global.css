@@ -412,7 +412,7 @@ a {
 }
 
 .sea.is-flat {
-  min-height: 460px;
+  min-height: 520px;
   background: linear-gradient(180deg, rgba(245, 249, 255, 0.2), var(--sea-top) 30%, var(--sea-bottom));
   border-radius: 32px;
 }
@@ -467,11 +467,73 @@ a {
   width: 210px;
 }
 
-.island-svg {
+.island-svg,
+.island-photo,
+.island-stack {
   width: 100%;
   height: auto;
   display: block;
-  overflow: visible;
+}
+
+.island-stack {
+  position: relative;
+}
+
+.island-prop {
+  position: absolute;
+  left: 50%;
+  height: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.prop-lamp {
+  top: 2%;
+  left: 48%;
+  width: 28%;
+  z-index: 4;
+}
+
+.prop-stone {
+  top: 46%;
+  left: 27%;
+  width: 18%;
+  z-index: 3;
+}
+
+.prop-house {
+  top: 48%;
+  left: 48%;
+  width: 26%;
+  z-index: 3;
+}
+
+.prop-fountain {
+  top: 50%;
+  left: 76%;
+  width: 16%;
+  z-index: 3;
+}
+
+.prop-plaza {
+  top: 64%;
+  left: 64%;
+  width: 30%;
+  z-index: 2;
+}
+
+.prop-tree {
+  top: 16%;
+  left: 22%;
+  width: 16%;
+  z-index: 3;
+}
+
+.prop-scope {
+  top: 0;
+  left: 74%;
+  width: 21%;
+  z-index: 5;
 }
 
 .bld {

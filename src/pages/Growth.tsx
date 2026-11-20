@@ -90,7 +90,7 @@ export default function Growth() {
           </article>
 
           <Link to="/world" className="card world-link" style={{ marginTop: 18 }}>
-            <MainIslandArt level={6} lamp={1} />
+            <MainIslandArt level={6} lamp={1} detailed />
             <p>轨迹是回头看，岛是走进去。</p>
           </Link>
         </div>

@@ -71,8 +71,8 @@ export const storyIslands: StoryIsland[] = [
     days: '一笔认真记下的支出、一个很小的决定。',
     example: '一笔认真记下的支出。',
     decor: 'lamp',
-    x: 52,
-    y: 86,
+    x: 50,
+    y: 78,
   },
 ]
 

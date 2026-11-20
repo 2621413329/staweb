@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import IslandScene from '../components/IslandScene'
 import Shell from '../components/Shell'
-import { AvatarFace, StoryIslandArt } from '../components/IslandArt'
-import { companions, heroLines, islandById } from '../data/site'
+import { AvatarFace, MainIslandArt, StoryIslandArt } from '../components/IslandArt'
+import { companions, heroLines } from '../data/site'
 
 export default function Home() {
   const [line, setLine] = useState(0)
@@ -55,7 +55,7 @@ export default function Home() {
               onBlur={() => setHover(null)}
             >
               <span className="card-isle" aria-hidden="true">
-                <StoryIslandArt color={islandById('life').color} decor="tree" lamp={hover === 'islands' ? 1 : 0.45} />
+                <MainIslandArt lamp={hover === 'islands' ? 1 : 0.55} />
               </span>
               <p className="entry-kicker">我的岛屿</p>
               <h2>世界就是首页。</h2>
@@ -70,7 +70,7 @@ export default function Home() {
               onBlur={() => setHover(null)}
             >
               <span className="card-isle" aria-hidden="true">
-                <StoryIslandArt color={islandById('life').color} decor="tree" lamp={hover === 'record' ? 1 : 0.45} />
+                <StoryIslandArt id="life" lamp={hover === 'record' ? 1 : 0.55} />
               </span>
               <p className="entry-kicker">今日日常</p>
               <h2>有没有一个想留住的瞬间？</h2>
@@ -88,7 +88,7 @@ export default function Home() {
               onBlur={() => setHover(null)}
             >
               <span className="card-isle" aria-hidden="true">
-                <StoryIslandArt color={islandById('health').color} decor="tree" lamp={hover === 'growth' ? 1 : 0.45} />
+                <StoryIslandArt id="health" lamp={hover === 'growth' ? 1 : 0.55} />
               </span>
               <p className="entry-kicker">成长轨迹</p>
               <h2>这段日子，被轻轻收好了。</h2>
@@ -100,7 +100,7 @@ export default function Home() {
               onMouseLeave={() => setHover(null)}
             >
               <span className="card-isle" aria-hidden="true">
-                <StoryIslandArt color={islandById('wealth').color} decor="lamp" lamp={hover === 'more' ? 1 : 0.45} />
+                <StoryIslandArt id="wealth" lamp={hover === 'more' ? 1 : 0.55} />
               </span>
               <p className="entry-kicker">更多</p>
               <h2>提醒、音乐、会员、协议。</h2>

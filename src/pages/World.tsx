@@ -144,7 +144,7 @@ export default function World() {
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="wrap grow-layout">
           <div className="sticky-island card" style={{ textAlign: 'center' }}>
-            <MainIslandArt level={level} lamp={1} sky={sky} />
+            <MainIslandArt level={level} lamp={1} sky={sky} detailed />
             <p className="pale-note">建筑是日子留下来的形状，不是打卡换来的奖品。</p>
           </div>
           <div className="level-row">
