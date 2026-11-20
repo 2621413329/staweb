@@ -1317,6 +1317,25 @@ a {
   align-items: center;
 }
 
+.package-list {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.package-card h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.package-card p {
+  margin: 0 0 8px;
+}
+
+.package-card .btn {
+  margin-top: 8px;
+}
+
 .store-actions {
   display: flex;
   flex-wrap: wrap;
