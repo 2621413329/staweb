@@ -7,10 +7,10 @@ interface LegalArticleProps {
 
 export default function LegalArticle({ sections, disclaimer }: LegalArticleProps) {
   return (
-    <article className="prose-policy space-y-8 text-blue-100/80 text-sm leading-relaxed">
+    <article className="prose-policy space-y-8 text-[#5C4A3E] text-sm leading-relaxed">
       {sections.map((section) => (
         <section key={section.title}>
-          <h2 className="text-base sm:text-lg font-bold text-white mb-4 pb-2 border-b border-white/10">
+          <h2 className="text-base sm:text-lg font-bold text-[#3D3229] mb-4 pb-2 border-b border-[#F0E2D4]">
             {section.title}
           </h2>
 
@@ -24,7 +24,7 @@ export default function LegalArticle({ sections, disclaimer }: LegalArticleProps
 
           {section.subsections?.map((sub) => (
             <div key={sub.subtitle} className="mb-5">
-              <h3 className="text-sm font-semibold text-blue-100 mb-3">{sub.subtitle}</h3>
+              <h3 className="text-sm font-semibold text-[#3D3229] mb-3">{sub.subtitle}</h3>
               {sub.paragraphs?.map((p) => (
                 <p key={p.slice(0, 24)} className="mb-2">
                   {p}
@@ -40,7 +40,7 @@ export default function LegalArticle({ sections, disclaimer }: LegalArticleProps
               )}
               {sub.text && <p className="mb-2">{sub.text}</p>}
               {sub.footer && (
-                <p className="mt-2 text-blue-200/60 text-xs">{sub.footer}</p>
+                <p className="mt-2 text-[#8C7B6B] text-xs">{sub.footer}</p>
               )}
             </div>
           ))}
@@ -49,9 +49,9 @@ export default function LegalArticle({ sections, disclaimer }: LegalArticleProps
             <div className="overflow-x-auto mb-4">
               <table className="w-full text-xs sm:text-sm border-collapse">
                 <thead>
-                  <tr className="border-b border-white/15">
+                  <tr className="border-b border-[#F0E2D4]">
                     {section.table.headers.map((h) => (
-                      <th key={h} className="text-left py-2 px-2 text-white font-semibold">
+                      <th key={h} className="text-left py-2 px-2 text-[#3D3229] font-semibold">
                         {h}
                       </th>
                     ))}
@@ -59,7 +59,7 @@ export default function LegalArticle({ sections, disclaimer }: LegalArticleProps
                 </thead>
                 <tbody>
                   {section.table.rows.map((row) => (
-                    <tr key={row[0]} className="border-b border-white/5">
+                    <tr key={row[0]} className="border-b border-[#F6EBE1]">
                       {row.map((cell, i) => (
                         <td key={i} className="py-2 px-2 align-top">
                           {cell}
@@ -81,27 +81,27 @@ export default function LegalArticle({ sections, disclaimer }: LegalArticleProps
           )}
 
           {section.items?.map((item) => (
-            <p key={item.label} className="mb-3 pl-3 border-l-2 border-white/10">
-              <strong className="text-white">{item.label}：</strong>
+            <p key={item.label} className="mb-3 pl-3 border-l-2 border-[#E8A87C]">
+              <strong className="text-[#3D3229]">{item.label}：</strong>
               {item.text}
             </p>
           ))}
 
           {section.note && (
-            <p className="mb-3 font-medium text-amber-200/90">{section.note}</p>
+            <p className="mb-3 font-medium text-[#A15C32]">{section.note}</p>
           )}
 
           {section.contact && (
-            <div className="mt-3 p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+            <div className="mt-3 p-4 rounded-xl bg-[#FFF6EE] border border-[#F0E2D4] space-y-2">
               <p>
-                <strong className="text-white">应用内路径：</strong>
+                <strong className="text-[#3D3229]">应用内路径：</strong>
                 {section.contact.inApp}
               </p>
               <p>
-                <strong className="text-white">联系邮箱：</strong>
+                <strong className="text-[#3D3229]">联系邮箱：</strong>
                 <a
                   href={`mailto:${section.contact.email}`}
-                  className="text-blue-300 hover:text-blue-200 underline"
+                  className="text-[#C4845A] underline"
                 >
                   {section.contact.email}
                 </a>
@@ -109,12 +109,12 @@ export default function LegalArticle({ sections, disclaimer }: LegalArticleProps
             </div>
           )}
 
-          {section.footer && <p className="mt-3 text-blue-200/60">{section.footer}</p>}
+          {section.footer && <p className="mt-3 text-[#8C7B6B]">{section.footer}</p>}
         </section>
       ))}
 
       {disclaimer && (
-        <div className="mt-8 p-4 rounded-xl bg-amber-500/10 border border-amber-400/20 text-amber-100/90 text-xs sm:text-sm">
+        <div className="mt-8 p-4 rounded-xl bg-[#FFF1E4] border border-[#F0D2B4] text-[#6F4B32] text-xs sm:text-sm">
           <strong>再次提示：</strong>
           {disclaimer}
         </div>

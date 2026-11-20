@@ -4,7 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Segoe UI"', 'system-ui', 'sans-serif'],
+        sans: ['"Noto Sans SC"', '"Segoe UI"', 'system-ui', 'sans-serif'],
+        serif: ['"Noto Serif SC"', 'Songti SC', 'serif'],
       },
     },
   },
