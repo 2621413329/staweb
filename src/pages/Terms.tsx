@@ -9,9 +9,9 @@ export default function Terms() {
       title={termsMeta.title}
       subtitle={`${termsMeta.subtitle} · 更新日期：${termsMeta.updatedAt}`}
     >
-      <p className="mb-6 text-sm text-blue-200/70">
+      <p className="mb-6 text-sm text-[#8c7b6b]">
         关联文档：
-        <Link to="/privacy" className="ml-1 text-blue-300 hover:text-blue-200 underline">
+        <Link to="/privacy" className="ml-1 text-[#c4845a] underline">
           隐私政策
         </Link>
       </p>
