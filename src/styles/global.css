@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 #root {
@@ -16,7 +20,7 @@ body,
 }
 
 #root {
-  overflow: hidden;
+  overflow: auto;
 }
 
 .page-scroll {
@@ -24,60 +28,41 @@ body,
   height: 100%;
 }
 
-/* 以常见笔记本视口为基准（1366×768 ~ 1920×1080） */
-@media (max-height: 720px) {
-  html {
-    font-size: 14px;
-  }
-}
-
 body {
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: "Nunito Sans", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  color: #243447;
+  background: #f7f4ee;
   -webkit-font-smoothing: antialiased;
 }
 
-.world-scroll::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-.world-scroll::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 3px;
-}
-
-.world-scroll::-webkit-scrollbar-thumb {
-  background: rgba(147, 197, 253, 0.4);
-  border-radius: 3px;
-}
-
-.world-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(147, 197, 253, 0.6);
-}
-
-@keyframes cloud-drift {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes shimmer {
+@keyframes island-drift {
   0%,
   100% {
-    opacity: 0.4;
+    transform: translateY(0);
   }
   50% {
-    opacity: 0.8;
+    transform: translateY(-6px);
   }
 }
 
-.cloud-layer {
-  animation: cloud-drift 60s linear infinite;
+.island-float {
+  animation: island-drift 7s ease-in-out infinite;
 }
 
-.glow-pulse {
-  animation: shimmer 3s ease-in-out infinite;
+.soft-scroll {
+  scrollbar-width: none;
+}
+
+.soft-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .island-float {
+    animation: none;
+  }
 }
